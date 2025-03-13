@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Porcentajes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+    .result, .error {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Porcentajes</h1>
+    
+    <label for="base">Número Base</label>
+    <input type="number" id="base" placeholder="Ingresa el número base">
+    
+    <label for="second">Segundo Número</label>
+    <input type="number" id="second" placeholder="Ingresa el valor">
+    
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="mode" value="calculatePercentage" checked>
+        % del Número
+      </label>
+      <label>
+        <input type="radio" name="mode" value="calculateRepresentation">
+        % que Representa
+      </label>
+    </div>
+    
+    <div class="result" id="result"></div>
+    <div class="error" id="error"></div>
+  </div>
+  
+  <script>
+    const baseInput = document.getElementById('base');
+    const secondInput = document.getElementById('second');
+    const modeInputs = document.getElementsByName('mode');
+    const resultDiv = document.getElementById('result');
+    const errorDiv = document.getElementById('error');
+    
+    function calculate() {
+      const baseValue = parseFloat(baseInput.value);
+      const secondValue = parseFloat(secondInput.value);
+      let mode;
+      for (const input of modeInputs) {
+        if (input.checked) {
+          mode = input.value;
+          break;
+        }
+      }
+      
+      // Limpiar mensajes anteriores
+      errorDiv.textContent = '';
+      resultDiv.textContent = '';
+      
+      // Validación de datos
+      if (isNaN(baseValue) || isNaN(secondValue)) {
+        errorDiv.textContent = 'Por favor, ingresa números válidos en ambos campos.';
+        return;
+      }
+      
+      if (mode === 'calculatePercentage') {
+        // Calcula: el porcentaje ingresado del número base
+        const result = (baseValue * secondValue) / 100;
+        resultDiv.textContent = `${secondValue}% de ${baseValue} es ${result}`;
+      } else if (mode === 'calculateRepresentation') {
+        // Calcula: qué porcentaje representa el segundo número del número base
+        if (baseValue === 0) {
+          errorDiv.textContent = 'El número base no puede ser 0 para este cálculo.';
+          return;
+        }
+        const result = (secondValue / baseValue) * 100;
+        resultDiv.textContent = `${secondValue} es el ${result.toFixed(2)}% de ${baseValue}`;
+      }
+    }
+    
+    // Actualiza el cálculo en tiempo real
+    baseInput.addEventListener('input', calculate);
+    secondInput.addEventListener('input', calculate);
+    for (const input of modeInputs) {
+      input.addEventListener('change', calculate);
+    }
+  </script>
+</body>
+</html>
