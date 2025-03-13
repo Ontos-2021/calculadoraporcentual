@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Porcentajes</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
-  Hello world
+  <div class="container">
+    <h1>Calculadora de Porcentajes</h1>
+    
+    <label for="base">Número Base</label>
+    <input type="number" id="base" placeholder="Ingresa el número base">
+    
+    <label for="second">Segundo Número</label>
+    <input type="number" id="second" placeholder="Ingresa el valor">
+    
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="mode" value="calculatePercentage" checked>
+        % del Número
+      </label>
+      <label>
+        <input type="radio" name="mode" value="calculateRepresentation">
+        % que Representa
+      </label>
+    </div>
+    
+    <div class="result" id="result"></div>
+    <div class="error" id="error"></div>
+  </div>
+  
   <script src="script.js"></script>
 </body>
-
 </html>
