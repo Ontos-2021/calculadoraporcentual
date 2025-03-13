@@ -19,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Limpiar mensajes anteriores
     errorDiv.textContent = '';
+    errorDiv.style.display = 'none'; // Ocultar el div de error
     resultDiv.textContent = '';
     
     // Validación de datos
     if (isNaN(baseValue) || isNaN(secondValue)) {
       errorDiv.textContent = 'Por favor, ingresa números válidos en ambos campos.';
+      errorDiv.style.display = 'block'; // Mostrar el div solo cuando hay error
       return;
     }
     
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Calcula: qué porcentaje representa el segundo número del número base
       if (baseValue === 0) {
         errorDiv.textContent = 'El número base no puede ser 0 para este cálculo.';
+        errorDiv.style.display = 'block'; // Mostrar el div solo cuando hay error
         return;
       }
       const result = (secondValue / baseValue) * 100;

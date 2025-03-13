@@ -119,6 +119,7 @@ input[type="number"]:focus {
 .error {
   color: #e06b9d;
   background-color: #ffeff6;
+  display: none; /* Oculto por defecto */
 }
 
 /* Placeholders más suaves */
