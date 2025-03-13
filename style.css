@@ -7,6 +7,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5e6f0, #e6f0fb);
   margin: 0;
+  padding: 15px;
 }
 
 .container {
@@ -14,7 +15,8 @@ body {
   padding: 25px;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(212, 167, 212, 0.2);
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
   border: 1px solid #f0e6f5;
   transition: all 0.3s ease;
 }
@@ -42,13 +44,21 @@ label {
 
 input[type="number"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px;
   box-sizing: border-box;
   border: 1px solid #e0d4e6;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 16px; /* Mejor tamaño para móviles */
   transition: border 0.3s;
   background-color: #fcfaff;
+  -moz-appearance: textfield; /* Quita las flechas en Firefox */
+}
+
+/* Quita las flechas de incremento/decremento en Chrome y Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"]:focus {
@@ -59,9 +69,10 @@ input[type="number"]:focus {
 
 .radio-group {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin: 20px 0;
-  padding: 8px 0;
+  padding: 12px 5px;
   background-color: #faf5fd;
   border-radius: 10px;
 }
@@ -69,24 +80,34 @@ input[type="number"]:focus {
 .radio-group label {
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
   margin: 0;
-  padding: 5px 8px;
+  padding: 8px 10px;
   color: #9370a7;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.radio-group label:hover {
+  color: #d370bc;
 }
 
 .radio-group input[type="radio"] {
-  margin-right: 6px;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
   accent-color: #d370bc;
+  cursor: pointer;
 }
 
 .result, .error {
   text-align: center;
-  margin-top: 18px;
+  margin-top: 20px;
   font-size: 18px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
+  min-height: 30px;
+  word-wrap: break-word;
 }
 
 .result {

@@ -45,6 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // Actualiza el cálculo en tiempo real
   baseInput.addEventListener('input', calculate);
   secondInput.addEventListener('input', calculate);
+  
+  // Asegura que el teclado se muestre correctamente en móviles
+  baseInput.addEventListener('focus', function() {
+    this.setAttribute('inputmode', 'decimal');
+  });
+  
+  secondInput.addEventListener('focus', function() {
+    this.setAttribute('inputmode', 'decimal');
+  });
+  
   for (const input of modeInputs) {
     input.addEventListener('change', calculate);
   }
