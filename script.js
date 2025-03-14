@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const resultDiv = document.getElementById('result');
   const errorDiv = document.getElementById('error');
   
+  // Calcular inicialmente con los valores por defecto
+  calculate();
+  
   function calculate() {
     const baseValue = parseFloat(baseInput.value);
     const secondValue = parseFloat(secondInput.value);
